@@ -1,15 +1,53 @@
 <script>
   import Filmstrip from "./Filmstrip.svelte";
   import siteData from "./siteData.js";
+  import FileIcon from './icons/file-alt-regular.svg'
+  import ColumnsIcon from './icons/columns-solid.svg'
+
+  import Content from './LightboxContent.svelte'
+
+  let boring = false;
+
+  if (location.hash === '#boring') {
+    boring = true;
+    location.hash = ""
+  }
 </script>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 
   .container {
     height: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .boringContainer {
+    padding: 0px 15px var(--bMargin) 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .boringContainer:before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    content: '';
+    z-index: -1;
+  }
+
+  .boring {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    user-select: text;
+    overflow-x: hidden;
   }
 
   .overflowContainer {
@@ -29,9 +67,9 @@
 
   .titleBlock {
     background-color: white;
-
+    
     z-index: 99;
-
+    
     position: sticky;
     top: 0;
     height: var(--titleHeight);
@@ -40,11 +78,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    
     padding: 10px 0;
     margin-bottom: var(--bMargin);
 
-    font-family: "Open Sans";
+    font-family: 'Open Sans';
   }
 
   .titleBlock img {
@@ -77,11 +115,25 @@
 <div class="container">
   <div class="titleBlock gradientAnim">
     <h1>Generic Cards List Page</h1>
+    <div class="modeToggle" on:click={() => boring = !boring}>
+      <svelte:component this={boring ? FileIcon : ColumnsIcon} />
+    </div>
   </div>
-
-  <div class="overflowContainer">
-    {#each siteData.filter((d) => d.content && d.content.length) as data}
-      <Filmstrip items={data} />
-    {/each}
-  </div>
+  {#if boring}
+    <div class="boringContainer">
+      <div class="boring">
+        {#each siteData.filter(d=>d.content && d.content.length).map(d => d.content.map(c => ({
+          ...c, title: [d.title, c.title, c.date].filter(v=>v).join(" - ")
+        }))).flat() as content}
+          <Content data={content} />
+        {/each}
+      </div>
+    </div>
+  {:else}  
+    <div class="overflowContainer">
+      {#each siteData.filter(d=>d.content && d.content.length) as data}
+        <Filmstrip items={data} />
+      {/each}
+    </div>
+  {/if}
 </div>

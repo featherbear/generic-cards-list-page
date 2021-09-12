@@ -6,10 +6,10 @@
 
   import Content from './components/Lightbox/LightboxContent.svelte'
 
-  let boring = false;
+  let showFlatView = false;
 
-  if (location.hash === '#boring') {
-    boring = true;
+  if (location.hash === '#flat') {
+    showFlatView = true;
     location.hash = ""
   }
 </script>
@@ -23,7 +23,7 @@
     flex-direction: column;
   }
 
-  .boringContainer {
+  .flatViewContainer {
     padding: 0px 15px var(--bMargin) 15px;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@
   }
 
 
-  .boringContainer:before {
+  .flatViewContainer:before {
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +42,7 @@
     z-index: -1;
   }
 
-  .boring {
+  .flatView {
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -115,13 +115,13 @@
 <div class="container">
   <div class="titleBlock gradientAnim">
     <h1>Generic Cards List Page</h1>
-    <div class="modeToggle" on:click={() => boring = !boring}>
-      <svelte:component this={boring ? FileIcon : ColumnsIcon} />
+    <div class="modeToggle" on:click={() => showFlatView = !showFlatView}>
+      <svelte:component this={showFlatView ? FileIcon : ColumnsIcon} />
     </div>
   </div>
-  {#if boring}
-    <div class="boringContainer">
-      <div class="boring">
+  {#if showFlatView}
+    <div class="flatViewContainer">
+      <div class="flatView">
         {#each siteData.filter(d=>d.content && d.content.length).map(d => d.content.map(c => ({
           ...c, title: [d.title, c.title, c.date].filter(v=>v).join(" - ")
         }))).flat() as content}

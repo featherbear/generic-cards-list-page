@@ -1,10 +1,10 @@
 <script>
-  import Filmstrip from "./Filmstrip.svelte";
+  import Filmstrip from "./components/Filmstrip/Filmstrip.svelte";
   import siteData from "./siteData.hjson";
   import FileIcon from './icons/file-alt-regular.svg'
   import ColumnsIcon from './icons/columns-solid.svg'
 
-  import Content from './LightboxContent.svelte'
+  import Content from './components/Lightbox/LightboxContent.svelte'
 
   let boring = false;
 

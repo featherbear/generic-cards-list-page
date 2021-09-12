@@ -1,5 +1,5 @@
 <script>
-  import IFrame from "./PreviewIFrame.svelte"
+  import IFrame from "../PreviewIFrame.svelte"
 
 
   export let data;

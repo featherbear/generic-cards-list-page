@@ -11,7 +11,7 @@ This project was built with the [Svelte](https://svelte.dev/) framework
 2. Run `npm run dev`
 3. Modify the `src/siteData.hjson` file
 
-> Read about HJSON [here](https://hjson.github.io/)
+> Read about the HJSON file format [here](https://hjson.github.io/)
 
 ### Building a static version
 

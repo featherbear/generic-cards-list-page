@@ -1,6 +1,6 @@
 <script>
   import Filmstrip from "./Filmstrip.svelte";
-  import siteData from "./siteData.json";
+  import siteData from "./siteData.hjson";
   import FileIcon from './icons/file-alt-regular.svg'
   import ColumnsIcon from './icons/columns-solid.svg'
 

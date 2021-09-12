@@ -11,6 +11,7 @@
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-svelte-svg": "github:featherbear/rollup-plugin-svelte-svg#build",
     "rollup-plugin-terser": "^4.0.4",
+    "hjson": "^3.2.2",
     "svelte": "^3.0.0"
   },
   "dependencies": {

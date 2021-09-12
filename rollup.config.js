@@ -2,11 +2,21 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
+import HJSON from 'hjson';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import svelteSVG from "rollup-plugin-svelte-svg";
 
 const production = !process.env.ROLLUP_WATCH;
+
+let json_plugin = json({ compact: true })
+let hjson_plugin = {
+  name: 'hjson',
+  transform(hjson, id) {
+    if (id.slice(-6) !== '.hjson') return null;
+    return json_plugin.transform(JSON.stringify(HJSON.parse(hjson)), id + ".json" )
+  }
+}
 
 export default {
 	input: 'src/main.js',
@@ -37,7 +47,8 @@ export default {
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 		}),
 		commonjs(),
-		json(),
+		hjson_plugin,     
+		json_plugin,
 		svelteSVG(),
 
 		// Watch the `public` directory and refresh the

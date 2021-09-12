@@ -4,7 +4,7 @@
 > Modified version of my [Filmstrip Messages](https://github.com/featherbear/filmstrip-messages)
 
 
-This project was build with the [Svelte](https://svelte.dev/) framework
+This project was built with the [Svelte](https://svelte.dev/) framework
 
 # Running
 

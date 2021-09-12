@@ -3,33 +3,23 @@
 
 > Modified version of my [Filmstrip Messages](https://github.com/featherbear/filmstrip-messages)
 
-
 This project was built with the [Svelte](https://svelte.dev/) framework
 
-# Running
+## Getting Started
 
-```
-npm install
-npm run start
-```
+1. Run `npm install`
+2. Run `npm run dev`
+3. Modify the `src/siteData.hjson` file
 
-# Development
+> Read about HJSON [here](https://hjson.github.io/)
 
-```
-npm install
-npm run dev
-```
+### Building a static version
 
-# Building a static version
-
-```
-npm install
-npm run build
-```
+Deploy with `npm run build`
 
 ---
 
 # GitHub Pages
 
-The provided `.github/workflows/gh-pages.yml` will automatically build and publish a static version of this repo with every `master` branch push to GitHub.
+The provided `.github/workflows/gh-pages.yml` will automatically build and publish a static version of this repo with every push of the `master` branch to GitHub.
 
